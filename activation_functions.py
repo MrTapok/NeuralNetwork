@@ -2,7 +2,7 @@ import math
 import numpy as np
 
 
-#functions for relu
+# functions for relu
 
 def relu_df(x):
     if x <= 0:
@@ -17,6 +17,7 @@ def relu_forward(x):
 
 # functions for sigmoid
 
+
 def sigmoid(x):
     return 1 / (1 + math.e**(-x))
 
@@ -28,7 +29,8 @@ def sigmoid_df(x):
 def sigmoid_forward(x):
     return 1 / (1 + math.e**(-x))
 
-#functions for softmax
+# functions for softmax
+
 
 def softmax_forward(x):
     x = math.e**x

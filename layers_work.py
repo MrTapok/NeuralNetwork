@@ -4,13 +4,13 @@ from activation_functions import softmax_forward
 import numpy as np
 
 
-def layer_forward(inputs, matrix, bias, activation_function):
+def layer_forward(inputs, matrix, bias, activation_function=0):
     raw_out = np.dot(matrix, inputs.T) + bias
     af_to_af_f = {
-        'relu': relu_forward(raw_out),
-        'sigmoid': sigmoid_forward(raw_out),
-        'softmax': softmax_forward(raw_out),
-        'raw': raw_out  # for testing
+        1: relu_forward(raw_out),
+        2: sigmoid_forward(raw_out),
+        3: softmax_forward(raw_out),
+        0: raw_out  # for testing
     }
     try:
         return af_to_af_f[activation_function]
