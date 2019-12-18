@@ -5,38 +5,37 @@ import numpy as np
 # functions for relu
 
 def relu_df(x):
-    if x <= 0:
-        return 0
-    else:
-        return 1
+    return np.where(x < 0, 0, 1)
 
 
-def relu_forward(x):
-    z = np.zeros(len(x))
-    return np.maximum(z,x)
+def relu_forward(x):  # работает
+    z = np.zeros((len(x), len(x[0])))
+    return np.maximum(z, x)
 
 # functions for sigmoid
 
 
-def sigmoid(x):
-    return 1 / (1 + math.e**(-x))
+def sigmoid_df(x):  # работает
+    s_f = sigmoid_forward(x)
+    return s_f * (1 - s_f)
 
 
-def sigmoid_df(x):
-    return sigmoid(x) * (1 - sigmoid(x))
-
-
-def sigmoid_forward(x):
-    return 1 / (1 + math.e**(-x))
+def sigmoid_forward(x):  # работает
+    return 1 / (1 + math.e**(np.dot(x, -1)))
 
 # functions for softmax
 
 
-def softmax_forward(x):
-    x = math.e**x
-    return x/(np.sum(x))
-
-
 def softmax_df(x):
-    return
+    s_f = softmax_forward(x)
+    return x * (1 - x)
+
+
+def softmax_forward(x):  # работает
+    temp = math.e**x
+    div = temp.sum(axis=1)
+    return np.transpose((np.divide(np.transpose(temp), np.transpose(div))))
+
+
+
 
