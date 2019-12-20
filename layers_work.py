@@ -11,26 +11,19 @@ import numpy as np
 
 def layer_forward(inputs, matrix, bias, activation_function=0):
     raw_out = np.add(np.dot(matrix, inputs.T).T, bias)
-    af_to_af_f = {
-        1: relu_forward(raw_out),
-        2: sigmoid_forward(raw_out),
-        3: softmax_forward(raw_out),
-        0: raw_out  # for testing
-    }
-    try:
-        return raw_out, af_to_af_f[activation_function]
-    except KeyError as e:
-        raise ValueError('Undefined unit: {}'.format(e.args[0]))
+
+    if activation_function == 1:
+        return raw_out, relu_forward(raw_out)
+    if activation_function == 2:
+        return raw_out, sigmoid_forward(raw_out)
+    if activation_function == 3:
+        return raw_out, softmax_forward(raw_out)
 
 
 def layer_backward(inputs, activation_function=0):
-    af_to_af_f = {
-        1: relu_df(inputs),
-        2: sigmoid_df(inputs),
-        3: softmax_df(inputs),
-        0: inputs  # for testing
-    }
-    try:
-        return af_to_af_f[activation_function]
-    except KeyError as e:
-        raise ValueError('Undefined unit: {}'.format(e.args[0]))
+    if activation_function == 1:
+        return relu_df(inputs)
+    if activation_function == 2:
+        return sigmoid_df(inputs)
+    if activation_function == 3:
+        return softmax_df(inputs)

@@ -28,7 +28,7 @@ def sigmoid_forward(x):  # работает
 
 def softmax_df(x):
     s_f = softmax_forward(x)
-    return x * (1 - x)
+    return s_f * (1 - s_f)
 
 
 def softmax_forward(x):  # работает
