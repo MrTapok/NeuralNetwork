@@ -5,12 +5,11 @@ import numpy as np
 # functions for relu
 
 def relu_df(x):
-    return np.where(x < 0, 0, 1)
+    return np.where(x <= 0, 0, 1)
 
 
 def relu_forward(x):  # работает
-    z = np.zeros((len(x), len(x[0])))
-    return np.maximum(z, x)
+    return np.where(x > 0, x, 0)
 
 # functions for sigmoid
 

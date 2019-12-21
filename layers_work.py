@@ -9,7 +9,7 @@ from activation_functions import softmax_df
 import numpy as np
 
 
-def layer_forward(inputs, matrix, bias, activation_function=0):
+def layer_forward(inputs, matrix, bias, activation_function):
     raw_out = np.add(np.dot(matrix, inputs.T).T, bias)
 
     if activation_function == 1:
@@ -20,7 +20,7 @@ def layer_forward(inputs, matrix, bias, activation_function=0):
         return raw_out, softmax_forward(raw_out)
 
 
-def layer_backward(inputs, activation_function=0):
+def layer_backward(inputs, activation_function):
     if activation_function == 1:
         return relu_df(inputs)
     if activation_function == 2:
